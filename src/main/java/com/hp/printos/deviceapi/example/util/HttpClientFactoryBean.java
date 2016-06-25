@@ -19,6 +19,8 @@ import org.springframework.beans.factory.FactoryBean;
 import javax.net.ssl.SSLContext;
 
 /**
+ * Convenience class for obtaining a full-featured HTTP client.  Ignore for purposes of the example.
+ *
  * Maven dependencies: Apache HttpComponents httpclient, spring-core and spring-context, guava
  */
 public class HttpClientFactoryBean implements FactoryBean<HttpClient> {
@@ -43,7 +45,7 @@ public class HttpClientFactoryBean implements FactoryBean<HttpClient> {
     clientBuilder.disableCookieManagement();
     clientBuilder.setMaxConnPerRoute(connectionPoolSize);
 
-    if( insecureSsl) {
+    if (insecureSsl) {
       SSLContext context = SSLContexts.custom()
               .loadTrustMaterial(null, new TrustSelfSignedStrategy())
               .build();

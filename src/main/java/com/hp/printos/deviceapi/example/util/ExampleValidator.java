@@ -5,14 +5,17 @@ import com.hp.printos.deviceapi.example.DeviceInfo;
 
 import java.util.Properties;
 
+/**
+ * Provide error checks for the example code.  This makes the example easier to read.  Validate things
+ * along the way such as credentials, tokens, and device info.
+ */
 public class ExampleValidator {
-
 
   public static void checkCredentials(Properties p) {
     String login = p.getProperty("psp_login");
     String password = p.getProperty("psp_password");
-    if (login == null || password == null || login.isEmpty() || password.isEmpty() ||
-      "REPLACEME".equals(login) || "REPLACEME".equals(password)) {
+    if (login == null || password == null || login.isEmpty() ||
+      password.isEmpty() || "REPLACEME".equals(login) || "REPLACEME".equals(password)) {
       System.out.println("Error: please edit " + Constants.CREDS_FILE + " and replace the values for");
       System.out.println("psp_login and psp_password.  These are the credentials you created");
       System.out.println("when you accepted the invite to PrintOS.");

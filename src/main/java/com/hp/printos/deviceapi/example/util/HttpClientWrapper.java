@@ -15,6 +15,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Convenience wrapper for obtaining an HTTP client for use in the example code.
+ */
 public class HttpClientWrapper {
   private static Logger log = LoggerFactory.getLogger(HttpClientWrapper.class);
 
@@ -62,7 +65,7 @@ public class HttpClientWrapper {
 
     int statusCode = response.getStatusLine().getStatusCode();
     String subCode = node.findValue("subCode").getTextValue();
-    log.error(message+ statusCode + "("+subCode+")");
+    log.error(message+ statusCode + "(" + subCode + ")");
   }
 
 }

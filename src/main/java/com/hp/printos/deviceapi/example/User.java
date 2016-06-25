@@ -14,9 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
- * Created by dstaas on 6/24/2016.
- */
 public class User {
   private static Logger log = LoggerFactory.getLogger(User.class);
 

@@ -1,5 +1,8 @@
 package com.hp.printos.deviceapi.example;
 
+/**
+ * Represents the items of interest when a device is created.  Returned from Device.create().
+ */
 public class DeviceInfo {
   private String deviceLogin;
   private String devicePassword;

@@ -22,6 +22,10 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.TimeZone;
 
+
+/**
+ * Contains basic operations for devices such as logging in and sending status data.
+ */
 public class Device {
   private static Logger log = LoggerFactory.getLogger(User.class);
 
@@ -32,10 +36,8 @@ public class Device {
     HttpPost post = new HttpPost(url);
     post.addHeader("Cookie", Constants.X_SMS_AUTH_TOKEN + "=" + userToken);
 
-    // Device model and type must match correctly; see the SDK document for a list of currently supported
-    // combinations.  The Device method signature is:
-    // Device (String deviceId, String name, String description, String serialNumber, String model, DeviceType type)
-    // Note that serial number must be unique, or the same device will get replaced.
+    // Device model and type must match correctly; see etc/devicelist.csv for a list of currently supported
+    // combinations.  Note that serial number must be unique, or the same device will get replaced.
 
     ObjectMapper mapper = new ObjectMapper();
     ObjectNode jsonNode = mapper.createObjectNode();
@@ -95,16 +97,18 @@ public class Device {
     post.addHeader("Cookie", Constants.X_SMS_AUTH_TOKEN + "=" + deviceToken);
 
     long MINS_AHEAD = 1000 * 60 * 30;   // Pretend we have 30 minutes of print time left
-    int jobsInQueue = 6;               // and 6 jobs left in the queue
+    int jobsInQueue = 6;                // and 6 jobs left in the queue
+    String status = "DS_PRINTING";      // and we're currently printing
+
     Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
     Timestamp printCompleteTime = new Timestamp(cal.getTime().getTime() + MINS_AHEAD);
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     String date = format.format(printCompleteTime.getTime());
 
-    org.codehaus.jackson.map.ObjectMapper mapper = new org.codehaus.jackson.map.ObjectMapper();
-    org.codehaus.jackson.node.ObjectNode jsonNode = mapper.createObjectNode();
+    ObjectMapper mapper = new org.codehaus.jackson.map.ObjectMapper();
+    ObjectNode jsonNode = mapper.createObjectNode();
 
-    jsonNode.put("deviceStatus", "DS_PRINTING");
+    jsonNode.put("deviceStatus", status);
     jsonNode.put("totalJobs", jobsInQueue);
     jsonNode.put("printTimeComplete", date);
 

@@ -8,7 +8,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import java.util.Properties;
 
-public class App {
+public class Main {
   public static void main(String[] args) {
     PropertyConfigurator.configure("log4j.xml");
 
