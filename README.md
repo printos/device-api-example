@@ -54,6 +54,8 @@ and password, and go to 'Account'
 in the app switcher and go to 'Devices'.  You'll see the device in the list, as well as on the home page along with
 the status you supplied.
 
+![Device List Screenshot](https://raw.githubusercontent.com/printos/device-api-example/master/etc/images/device_list.png)
+
 # Switching to Production
 In `settings.properties`, you'll see the following entry:
 
