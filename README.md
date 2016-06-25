@@ -73,6 +73,8 @@ base_url=https://printos.api.hp.com/platform
 
 Note that you will need a separate account invitation to production in order to view devices on that stack, so you'll
 also want to update the `psp_login` and `psp_password` in `creds.properties` as well with the new account information.
+If you're integrating with the production APIs, you'll want to use the production URL for the site
+([https://printos.com](https://printos.com)).
 
 # Best Practices
 Typically, PrintOS-enabled devices will have a UI screen on the device itself to allow the user to enter their
@@ -86,3 +88,40 @@ token and log in again to get a new one.  Do not log in every time you need to s
 have if it's not expired.
 
 Devices should not send status more often than every 1-2 minutes.
+
+Since devices in the field can be hard to get updated, your device code should be very tolerant of all situations
+that might arise (servers being down, tokens expiring, etc.)  You code should be capable of handling any response
+code from the server.
+
+# Other Things To Know
+
+### Serial Number Collisions
+If you try to provision the same device type, model, and serial number twice,
+PrintOS (intentionally) replaces the old device with the new one.  This allows a device to re-provision itself
+in the case where the device login or password is lost.  However, it will lose any specific changes to that device
+the user might have made, so normally you should avoid this unless necessary.
+
+If you try to register the same serial number of a particular device and model and it's already in use by another
+organization, the addition is disallowed.
+
+### The List of Device Types and Models
+This list is in the database and is currently (intentionally) not programmatically extensible.  In other words, if
+you want your device to be provisionable following these instructions, it'll already need to be registered in the
+database, have an image in our image repository, etc.  So, we'll need to get it on the list for you.  Contact us
+and we can get it added.
+
+### Extending the Real-Time Data Sent
+The POST of real-time data in this example only shows the basics (job count, etc.)  We also support the inclusion
+of an extendedInformation node in the payload that can be used by our UI to show more extensive stats for more
+sophisticated devices.  This is used, for example, to show ink levels, job history and more for HP Latex devices.
+This does require us to modify the device UI in PrintOS, so contact us if you're interested in more information
+on this and we can possibly work together to provide the best experience for your device.
+
+### Device States
+The device state must be one of these values:
+
+```
+'DS_ON','DS_OFF','DS_PRINTING','DS_STANDBY','DS_ERROR','DS_RIPPING'
+```
+
+Using a different value will cause an error.
