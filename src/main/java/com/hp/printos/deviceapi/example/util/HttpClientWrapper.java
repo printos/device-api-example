@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ClientWrapper {
-  private static Logger log = LoggerFactory.getLogger(ClientWrapper.class);
+public class HttpClientWrapper {
+  private static Logger log = LoggerFactory.getLogger(HttpClientWrapper.class);
 
   public static HttpClient getClient(Properties p) throws Exception
   {

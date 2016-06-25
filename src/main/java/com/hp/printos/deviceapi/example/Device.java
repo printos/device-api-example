@@ -1,7 +1,6 @@
 package com.hp.printos.deviceapi.example;
 
-import com.hp.printos.deviceapi.example.util.ClientWrapper;
-import com.sun.deploy.util.SessionState;
+import com.hp.printos.deviceapi.example.util.HttpClientWrapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
@@ -52,7 +51,7 @@ public class Device {
     StringEntity entity = new StringEntity(jsonNode.toString());
     post.setEntity(entity);
 
-    HttpResponse response = ClientWrapper.executeHttpCommand(client, post);
+    HttpResponse response = HttpClientWrapper.executeHttpCommand(client, post);
     if (response != null) {
       String resp = EntityUtils.toString(response.getEntity());
 
@@ -107,10 +106,10 @@ public class Device {
     StringEntity entity = new StringEntity(jsonNode.toString());
     post.setEntity(entity);
 
-    HttpResponse response = ClientWrapper.executeHttpCommand(client, post);
+    HttpResponse response = HttpClientWrapper.executeHttpCommand(client, post);
     if (response != null) {
       if (response.getStatusLine().getStatusCode() != 204) {
-        ClientWrapper.logErrorResponse(response, "Failed To post data");
+        HttpClientWrapper.logErrorResponse(response, "Failed To post data");
         return false;
       } else {
         EntityUtils.consumeQuietly(response.getEntity());

@@ -3,41 +3,10 @@ package com.hp.printos.deviceapi.example.util;
 import com.hp.printos.deviceapi.example.Constants;
 import com.hp.printos.deviceapi.example.DeviceInfo;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Created by dstaas on 5/6/2016.
- */
-public class Utils {
+public class ExampleValidator {
 
-  public static Properties getProperties(String filename) {
-    if (filename == null) return null;
-    Properties props = new Properties();
-    try {
-      InputStream is = new FileInputStream(filename);
-      props.load(is);
-      return props;
-    } catch (IOException e) {
-      System.out.println("Error reading " + filename);
-      return null;
-    }
-  }
-
-  public static Properties getPropertiesAsResource(String filename) {
-    if (filename == null) return null;
-    Properties props = new Properties();
-    try {
-      InputStream is = ClassLoader.class.getResourceAsStream(filename);
-      props.load(is);
-      return props;
-    } catch (IOException e) {
-      System.out.println("Error reading " + filename);
-      return null;
-    }
-  }
 
   public static void checkCredentials(Properties p) {
     String login = p.getProperty("psp_login");
@@ -71,6 +40,5 @@ public class Utils {
       System.out.println("  - Invalid characters used in certain field (e.g. special chars attempted in the serial number field");
       System.exit(1);
     }
-
   }
 }

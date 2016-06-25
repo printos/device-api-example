@@ -1,6 +1,6 @@
 package com.hp.printos.deviceapi.example;
 
-import com.hp.printos.deviceapi.example.util.ClientWrapper;
+import com.hp.printos.deviceapi.example.util.HttpClientWrapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
@@ -35,16 +35,16 @@ public class User {
     StringEntity entity = new StringEntity(jsonNode.toString());
     loginPost.setEntity(entity);
 
-    HttpResponse response = ClientWrapper.executeHttpCommand(client, loginPost);
+    HttpResponse response = HttpClientWrapper.executeHttpCommand(client, loginPost);
     if (response != null)
     {
       if(response.getStatusLine().getStatusCode() == 200)
       {
-        token = ClientWrapper.getTokenFromResponse(response);
+        token = HttpClientWrapper.getTokenFromResponse(response);
         EntityUtils.consumeQuietly(response.getEntity());
       }
       else {
-        ClientWrapper.logErrorResponse(response, "Failed To login");
+        HttpClientWrapper.logErrorResponse(response, "Failed To login");
       }
     }else {
       log.error("No response returned from login call");
