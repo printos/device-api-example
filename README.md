@@ -56,6 +56,8 @@ the status you supplied.
 
 ![Device List Screenshot](https://raw.githubusercontent.com/printos/device-api-example/master/etc/images/device_list.png)
 
+![Device Tile Screenshot](https://raw.githubusercontent.com/printos/device-api-example/master/etc/images/device_tile.png)
+
 # Switching to Production
 In `settings.properties`, you'll see the following entry:
 
