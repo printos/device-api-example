@@ -59,15 +59,20 @@ public class Device {
         JsonParser jp = mapper.getJsonFactory().createJsonParser(resp);
         JsonNode rootNode = mapper.readTree(jp);
         JsonNode node = rootNode.findValue("credentials");
-
-        // These are the device credentials - save somewhere safe for future logins
-        String deviceLogin = node.findValue("login").getTextValue();
-        String devicePassword = node.findValue("password").getTextValue();
         JsonNode node2 = rootNode.findValue("device");
         String deviceId = node2.findValue("deviceId").getTextValue();
 
-        System.out.println("device_login=" + deviceLogin);
-        System.out.println("device_password=" + devicePassword);
+        String deviceLogin = null;
+        String devicePassword = null;
+        if (node == null || node.findValue("login") == null) {
+          System.out.println("Device is marked as non-provisionable, no login/password will be returned.");
+        } else {
+          deviceLogin = node.findValue("login").getTextValue();
+          devicePassword = node.findValue("password").getTextValue();
+          System.out.println("device_login=" + deviceLogin);
+          System.out.println("device_password=" + devicePassword);
+        }
+
         System.out.println("device_id=" + deviceId);
         System.out.println("Device created successfully.  Remember these values, this is the only time they'll be shown.");
         EntityUtils.consumeQuietly(response.getEntity());

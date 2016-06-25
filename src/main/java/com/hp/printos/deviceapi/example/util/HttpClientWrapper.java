@@ -24,7 +24,7 @@ public class HttpClientWrapper {
     cf.setProxyEnabled(Boolean.parseBoolean(p.getProperty("proxy_enabled")));
     cf.setProxyHostname(p.getProperty("proxy_host"));
     cf.setProxyPort(Integer.parseInt(p.getProperty("proxy_port")));
-    cf.setProxyScheme("http");
+    cf.setProxyScheme(p.getProperty("proxy_scheme"));
     cf.setInsecureSsl(true);
 
     return cf.getObject();

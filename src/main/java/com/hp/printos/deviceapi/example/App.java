@@ -39,17 +39,19 @@ public class App {
       DeviceInfo deviceInfo = Device.create(settings.getProperty("base_url") + Constants.AAA_PATH, client, userToken, settings, credentials);
       ExampleValidator.checkDevice(deviceInfo);
 
-      // Step 3.  Log in as the device.
+      if (deviceInfo.getDeviceLogin() != null) {
 
-      url = settings.getProperty("base_url") + Constants.AAA_PATH + "/devices/login";
-      String deviceToken = User.loginAndGetToken(client, url, deviceInfo.getDeviceLogin(), deviceInfo.getDevicePassword());
-      ExampleValidator.checkToken(deviceToken);
+        // Step 3.  Log in as the device.
+
+        url = settings.getProperty("base_url") + Constants.AAA_PATH + "/devices/login";
+        String deviceToken = User.loginAndGetToken(client, url, deviceInfo.getDeviceLogin(), deviceInfo.getDevicePassword());
+        ExampleValidator.checkToken(deviceToken);
 
       // Step 4.  Send in some statistics for the device.
 
-      url = settings.getProperty("base_url") + Constants.SS_PATH + "/devices";
-      Device.postRealTimeData(client, url, deviceToken);
-
+        url = settings.getProperty("base_url") + Constants.SS_PATH + "/devices";
+        Device.postRealTimeData(client, url, deviceToken);
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
