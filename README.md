@@ -1,6 +1,8 @@
 # device-api-example
 Demonstrates the initial provisioning and login of a device into HP PrintOS as well as sending real-time status.
 
+![Device Overview Screenshot](https://raw.githubusercontent.com/printos/device-api-example/master/etc/images/device_overview.png)
+
 # Overview
 HP PrintOS exposes a set of APIs to allow devices to be created, log in, and send real-time statistics.  Those
 APIs are exercised with this example project.  This example allows you to specify your (human) login and password
