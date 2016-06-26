@@ -1,6 +1,8 @@
 # device-api-example
 Demonstrates the initial provisioning and login of a device into HP PrintOS as well as sending real-time status.
 
+See [https://youtu.be/_D_e7pbWXq4](https://youtu.be/_D_e7pbWXq4) for a short video tutorial of this code.
+
 ![Device Overview Screenshot](https://raw.githubusercontent.com/printos/device-api-example/master/etc/images/device_overview.png)
 
 # Overview
@@ -39,6 +41,8 @@ should get both of these.
 When you accept the e-mail invitation, you'll create a login and password, and you'll set up your own PSP account,
 in which you'll be a PSP admin.  PSP admin rights are required in order to manage devices.  You'll need to specify 
 these credentials in a config file in the example code.
+
+You'll need a Java 8 JDK installed.  The project also requires Maven.  The tutorial video shows the use of IntelliJ, but it's not required to run the code.
 
 # Setup
 **Required:** Once you download the example code, look for the file called `creds.properties`.  Edit this file and replace the
